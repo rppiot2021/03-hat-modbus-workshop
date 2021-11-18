@@ -19,7 +19,7 @@ async def create(conf, engine):
     _source_id += 1
 
     module._subscription = hat.event.server.common.Subscription([
-        ('gateway', '?', 'example', '?', 'gateway', 'counter')])
+        ('gateway', '?', 'example', '?', 'gateway', '4003')])
     module._async_group = hat.aio.Group()
     module._engine = engine
 
@@ -57,7 +57,9 @@ class Session(hat.event.server.common.ModuleSession):
             self._engine.create_process_event(
                 self._source,
                 hat.event.server.common.RegisterEvent(
-                    event_type=('counter', ),
+                    event_type=('temperature', ),
                     source_timestamp=None,
-                    payload=event.payload))
+                    payload=hat.event.common.EventPayload(
+                        type=hat.event.common.EventPayloadType.JSON,
+                        data=f'{event.payload.data / 10}')))
             for event in changes]

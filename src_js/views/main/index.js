@@ -2,5 +2,5 @@ import 'main/index.scss';
 
 
 export function vt() {
-    return ['span', `counter: ${r.get('remote', 'adapter', 'counter')}`];
+    return ['span', `temperature: ${r.get('remote', 'adapter', 'temperature')}`];
 }

@@ -9,7 +9,7 @@ json_schema_repo = None
 
 
 async def create_subscription(conf):
-    return hat.event.common.Subscription([('counter', )])
+    return hat.event.common.Subscription([('temperature', )])
 
 
 async def create_adapter(conf, event_client):
@@ -46,8 +46,8 @@ class Adapter(hat.gui.common.Adapter):
         while True:
             events = await self._event_client.receive()
             for e in events:
-                if e.event_type == ('counter', ):
-                    self._state = dict(self._state, counter=e.payload.data)
+                if e.event_type == ('temperature', ):
+                    self._state = dict(self._state, temperature=e.payload.data)
                     self._state_change_cb_registry.notify()
 
 
