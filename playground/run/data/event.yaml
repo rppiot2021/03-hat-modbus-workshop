@@ -1,4 +1,9 @@
 ---
+type: event
+module_engine:
+    modules:
+      - module: workshop.modules.temperature
+      - module: workshop.modules.enable_all
 backend_engine:
     backend:
         module: hat.event.server.backends.dummy
@@ -28,14 +33,9 @@ log:
         - syslog
         level: INFO
     version: 1
-module_engine:
-    modules:
-      - module: project.modules.example
-      - module: project.modules.enable_all
 monitor:
     component_address: tcp+sbs://127.0.0.1:23012
     group: event
     monitor_address: tcp+sbs://127.0.0.1:23010
     name: event
-type: event
 ...
